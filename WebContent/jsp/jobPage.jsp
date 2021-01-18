@@ -2,44 +2,45 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>部门管理页面</title>
+    <title>职位管理页面</title>
 </head>
 <body>
-<div class="hrms_dept_container">
-    <!-- 导航栏-->
+<div class="hrms_container">
+    <!-- 导航条 -->
     <%@ include file="./commom/head.jsp"%>
 
+    <!-- 中间部分（包括左边栏和员工/部门表单显示部分） -->
+    <div class="hrms_body" style="position:relative; top:-15px;">
 
-    <!-- 中间部分（左侧栏+表格内容） -->
-    <div class="hrms_dept_body">
         <!-- 左侧栏 -->
         <%@ include file="./commom/leftsidebar.jsp"%>
 
-        <!-- 部门表格内容 -->
-        <div class="dept_info col-sm-10">
+        <!-- 中间员工表格信息展示内容 -->
+        <div class="emp_info col-sm-10">
+
             <div class="panel panel-success">
                 <!-- 路径导航 -->
                 <div class="panel-heading">
                     <ol class="breadcrumb">
-                        <li><a href="#">部门管理</a></li>
-                        <li class="active">部门信息</li>
+                        <li><a href="#">职位管理</a></li>
+                        <li class="active">职位信息</li>
                     </ol>
                 </div>
                 <!-- Table -->
-                <table class="table table-bordered table-hover" id="dept_table">
+                <table class="table table-bordered table-hover" id="job_table">
                     <thead>
-                        <th>部门编号</th>
-                        <th>部门名称</th>
-                        <th>操作</th>
+                    <th>职位编号</th>
+                    <th>职位名称</th>
+                    <th>操作</th>
                     </thead>
                     <tbody>
-                        <c:forEach items="${departments}" var="dept">
+                        <c:forEach items="${jobs}" var="job">
                             <tr>
-                                <td>${dept.id}</td>
-                                <td>${dept.deptname}</td>
+                                <td>${job.jobno}</td>
+                                <td>${job.jobname}</td>
                                 <td>
-                                    <a href="#" role="button" class="btn btn-primary dept_edit_btn" data-toggle="modal" data-target=".dept-update-modal">编辑</a>
-                                    <a href="#" role="button" class="btn btn-danger dept_delete_btn">删除</a>
+                                    <a href="#" role="button" class="btn btn-primary emp_edit_btn" data-toggle="modal" data-target=".emp-update-modal">编辑</a>
+                                    <a href="#" role="button" class="btn btn-danger job_delete_btn">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -52,7 +53,7 @@
                     </div>
                     <nav aria-label="Page navigation" class="pull-right">
                         <ul class="pagination">
-                            <li><a href="dept/findAll?pageNo=1">首页</a></li>
+                            <li><a href="${pageContext.request.contextPath}/job/getJobList?pageNo=1">首页</a></li>
                             <c:if test="${curPageNo==1}">
                                 <li class="disabled">
                                     <a href="#" aria-label="Previous" class="prePage">
@@ -69,11 +70,11 @@
                             </c:if>
 
                             <c:forEach begin="1" end="${totalPages<5?totalPages:5}" step="1" var="itemPage">
-                                <c:if test="${curPageNo == itemPage}">
-                                    <li class="active"><a href="dept/findAll?pageNo=${itemPage}">${itemPage}</a></li>
+                                <c:if test="${curPageNo == itemPages}">
+                                    <li class="active"><a href="${pageContext.request.contextPath}/job/getJobList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
-                                <c:if test="${curPageNo != itemPage}">
-                                    <li><a href="dept/findAll?pageNo=${itemPage}">${itemPage}</a></li>
+                                <c:if test="${curPageNo != itemPages}">
+                                    <li><a href="${pageContext.request.contextPath}/job/getJobList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
                             </c:forEach>
 
@@ -91,61 +92,64 @@
                                     </a>
                                 </li>
                             </c:if>
-                            <li><a href="dept/findAll?pageNo=${totalPages}">尾页</a></li>
+                            <li><a href="${pageContext.request.contextPath}/job/getJobList?pageNo=${totalPages}">尾页</a></li>
                         </ul>
                     </nav>
                 </div>
             </div><!-- /.panel panel-success -->
-        </div><!-- /.dept_info -->
-    </div><!-- /.hrms_dept_body -->
+        </div><!-- /.emp_info -->
 
-    <%@ include file="departmentAdd.jsp"%>
-    <%@ include file="departmentUpdate.jsp"%>
+        <!-- 尾部 -->
+        <%@ include file="./commom/foot.jsp"%>
+    </div><!-- /.hrms_body -->
+</div><!-- /.container -->
 
-    <!-- 尾部-->
-    <%@ include file="./commom/foot.jsp"%>
+<%@ include file="jobAdd.jsp"%>
+<%@ include file="jobUpdate.jsp"%>
 
-</div><!-- /.hrms_dept_container -->
 
-<script type="text/javascript">
-    var curPageNo = ${curPageNo};
-    var totalPages = ${totalPages};
-    //上一页
-    $(".prePage").click(function () {
-         if (curPageNo > 1){
-             var pageNo = curPageNo - 1;
-             $(this).attr("href", "dept/findAll?pageNo="+pageNo);
-         }
+<script>
+    $(function () {
+        //上一页
+        var curPage = ${curPageNo};
+        var totalPages = ${totalPages};
+        $(".prePage").click(function () {
+            if (curPage > 1){
+                var pageNo = curPage-1;
+                $(this).attr("href", "${pageContext.request.contextPath}/job/getJobList?pageNo="+pageNo);
+            }
+        });
+        //下一页
+        $(".nextPage").click(function () {
+            if (curPage < totalPages){
+                var pageNo = curPage+1;
+                $(this).attr("href", "${pageContext.request.contextPath}/job/getJobList?pageNo="+pageNo);
+            }
+        });
     });
-    //下一页
-    $(".nextPage").click(function () {
-        if (curPageNo < totalPages){
-            var pageNo = curPageNo + 1;
-            $(this).attr("href", "dept/findAll?pageNo="+pageNo);
-        }
-    });
 
-
-    <!-- 部门删除操作 -->
-    $(".dept_delete_btn").click(function () {
-        var delDeptId = $(this).parent().parent().find("td:eq(0)").text();
-        var delDeptName = $(this).parent().parent().find("td:eq(1)").text();
-        var curPageNo = ${curPageNo};
-        if (confirm("确认删除【"+ delDeptName +"】的信息吗？")){
+    <!-- ==========================员工删除操作=================================== -->
+    $(".job_delete_btn").click(function () {
+        var curPage = ${curPageNo};
+        var delJobId = $(this).parent().parent().find("td:eq(0)").text();
+        var delJobName = $(this).parent().parent().find("td:eq(1)").text();
+        if (confirm("确认删除【" + delJobName+ "】？")){
             $.ajax({
-                url:"/hrms/dept/delDept/"+delDeptId,
+                url:"${pageContext.request.contextPath}/job/deleteJob/"+delEmpId,
                 type:"DELETE",
                 success:function (result) {
                     if (result.code == 100){
                         alert("删除成功！");
-                        window.location.href = "dept/getDeptList?pageNo="+curPageNo;
+                        window.location.href="${pageContext.request.contextPath}/job/getJobList?pageNo="+curPage;
                     }else {
-                        alert(result.extendInfo.del_dept_error);
+                        alert("删除失败");
                     }
                 }
             });
         }
     });
+
+
 </script>
 </body>
 </html>

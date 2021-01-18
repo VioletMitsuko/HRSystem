@@ -1,0 +1,163 @@
+* {
+	/* 鍒濆鍖� 娓呴櫎椤甸潰鍏冪礌鐨勫唴澶栬竟璺� */
+	padding: 0;
+	margin: 0;
+	/* 鐩掑瓙妯″瀷 */
+	box-sizing: border-box;
+}
+body {
+	/* 寮规�у竷灞� 璁╅〉闈㈠厓绱犲瀭鐩�+姘村钩灞呬腑 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* 璁╅〉闈㈠缁堝崰娴忚鍣ㄥ彲瑙嗗尯鍩熸�婚珮搴� */
+	height: 100vh;
+	/* 鑳屾櫙娓愬彉鑹� */
+	background: linear-gradient(#141e30, #243b55);
+}
+.login {
+	/* 寮规�у竷灞� 璁╁瓙鍏冪礌绉颁负寮规�ч」鐩� */
+	display: flex;
+	/* 璁╁脊鎬ч」鐩瀭鐩存帓鍒� 鍘熺悊鏄敼鍙樺脊鎬х洅瀛愮殑涓昏酱鏂瑰悜 鐖跺厓绱犲氨鏄脊鎬х洅瀛� 鐜板湪鏀瑰彉鍚庣殑涓昏酱鏂瑰悜鏄悜涓嬩簡 */
+	flex-direction: column;
+	/* 璁╁脊鎬ч」鐩湪浜ゅ弶杞存柟鍚戞按骞冲眳涓� 鐜板湪涓昏酱鐨勬柟鍚戞槸鍚戜笅 浜ゅ弶杞寸殑鏂瑰悜鏄笌涓昏酱鍨傜洿 浜ゅ弶杞寸殑鏂瑰悜鏄悜鍙� */
+	align-items: center;
+	width: 400px;
+	padding: 40px;
+	background-color: rgba(0, 0, 0, 0.2);
+	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+.login h2 {
+	color: #fff;
+	margin-bottom: 30px;
+}
+.login .login_box {
+	/* 鐩稿瀹氫綅 */
+	position: relative;
+	width: 100%;
+}
+.login .login_box input {
+	/* 娓呴櫎input妗嗚嚜甯︾殑杈规鍜岃疆寤� */
+	outline: none;
+	border: none;
+	width: 100%;
+	padding: 10px 0;
+	margin-bottom: 30px;
+	color: #fff;
+	font-size: 16px;
+	border-bottom: 1px solid #fff;
+	/* 鑳屾櫙棰滆壊涓洪�忔槑鑹� */
+	background-color: transparent;
+}
+.login .login_box label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px 0;
+	color: #fff;
+	/* 杩欎釜灞炴�х殑榛樿鍊兼槸auto 榛樿鏄繖涓厓绱犲彲浠ヨ鐐瑰嚮 浣嗘槸濡傛灉鎴戜滑鍐欎簡none 灏辨槸杩欎釜鍏冪礌涓嶈兘琚偣鍑� , 灏卞ソ鍍忓畠鍙浣嗘槸涓嶈兘鐢� 鍙湜鑰屼笉鍙嵆 */
+	/* 杩欎釜灏辨槸涓よ�呯殑鍖哄埆 */
+	pointer-events: none;
+	/* 鍔犱釜杩囨浮 */
+	transition: all 0.5s;
+}
+/* :focus 閫夋嫨鍣ㄦ槸褰搃nput鑾峰緱鐒︾偣鏄Е鍙戠殑鏍峰紡 + 鏄浉閭诲厔寮熼�夋嫨鍣� 鍘绘壘涓巌nput鐩搁偦鐨勫厔寮焞abel */
+/* :valid 閫夋嫨鍣ㄦ槸鍒ゆ柇input妗嗙殑鍐呭鏄惁鍚堟硶,濡傛灉鍚堟硶浼氭墽琛屼笅闈㈢殑灞炴�т唬鐮�,涓嶅悎娉曞氨涓嶄細鎵ц,鎴戜滑鍒氬紑濮嬪啓甯冨眬鐨勬椂鍊欑粰input妗嗗啓浜唕equired 鎴戜滑鍒犳帀鐪嬪姣� 褰撴病鏈塺equired鐨勮瘽input妗嗙殑鍊煎氨浼氳璁や负涓�鐩村悎娉�,鎵�浠ヤ竴鐩撮兘鏄笅鏂圭殑鏍峰紡 ,浣嗘槸瀵嗙爜涓嶄細,瀵嗙爜妗嗗唴鐨勫�间负绌�,閭ｄ箞杩欏彞璇濆眬涓嶅悎娉�,required涓嶈兘涓虹┖ 褰撴垜浠粰瀵嗙爜妗嗗啓鐐逛笢瑗跨殑鏃跺�欐墠浼氭墽琛屼互涓嬩唬鐮�*/
+.login .login_box input:focus + label,
+.login .login_box input:valid + label {
+	top: -20px;
+	color: #03e9f4;
+	font-size: 12px;
+}
+.login a {
+	overflow: hidden;
+	position: relative;
+	padding: 10px 20px;
+	color: #03e9f4;
+	/* 鍙栨秷a琛ㄧ幇鍘熸湁鐨勪笅鍒掔嚎 */
+	text-decoration: none;
+	/* 鍚屾牱鍔犱釜杩囨浮 */
+	transition: all 0.5s;
+}
+.login a:hover {
+	color: #fff;
+	border-radius: 5px;
+	background-color: #03e9f4;
+	box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+		0 0 100px #03e9f4;
+}
+.login a span {
+	position: absolute;
+}
+.login a span:first-child {
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 2px;
+	/* to right 灏辨槸寰�鍙宠竟 涓嬮潰鐨勫悓鐞� */
+	background: linear-gradient(to right, transparent, #03e9f4);
+	/* 鍔ㄧ敾 鍚嶇О 鏃堕暱 linear鏄寑閫熻繍鍔� infinite鏄棤闄愭杩愬姩 */
+	animation: move1 1s linear infinite;
+}
+.login a span:nth-child(2) {
+	right: 0;
+	top: -100%;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(transparent, #03e9f4);
+	/* 杩欓噷澶氫簡涓�0.25s鍏跺疄鏄欢杩熸椂闂� */
+	animation: move2 1s linear 0.25s infinite;
+}
+.login a span:nth-child(3) {
+	right: -100%;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(to left, transparent, #03e9f4);
+	animation: move3 1s linear 0.5s infinite;
+}
+.login a span:last-child {
+	left: 0;
+	bottom: -100%;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(#03e9f4, transparent);
+	animation: move4 1s linear 0.75s infinite;
+}
+/* 鍐欎竴涓嬪姩鐢� 鍐嶅潥鎸佷竴涓� 瑙嗛椹笂灏卞畬浜� */
+@keyframes move1 {
+	0% {
+		left: -100%;
+	}
+	50%,
+	100% {
+		left: 100%;
+	}
+}
+@keyframes move2 {
+	0% {
+		top: -100%;
+	}
+	50%,
+	100% {
+		top: 100%;
+	}
+}
+@keyframes move3 {
+	0% {
+		right: -100%;
+	}
+	50%,
+	100% {
+		right: 100%;
+	}
+}
+@keyframes move4 {
+	0% {
+		bottom: -100%;
+	}
+	50%,
+	100% {
+		bottom: 100%;
+	}
+}

@@ -15,20 +15,18 @@
        
         <!-- 配置视图解析器  帮我们拼串-->
         <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        	<property name="prefix" value="/WEB-INF/pages/"></property>
+        	<property name="prefix" value="/jsp/"></property>
         	<property name="suffix" value=".jsp"></property>
         </bean>
         
         <!-- 配置静态资源不过滤 -->
-        <mvc:resources location="/public/css/" mapping="/public/css/**"></mvc:resources>
-        <mvc:resources location="/public/css/font/" mapping="/public/css/font/**"></mvc:resources>
-       <!--  <mvc:resources location="/html/" mapping="/html/**"></mvc:resources> -->
-        <mvc:resources location="/public/js/" mapping="/public/js/**"></mvc:resources>
-        <mvc:resources location="/public/js/jquery-easyui-1.4.1/" mapping="/public/js/jquery-easyui-1.4.1/**"></mvc:resources>
-        <mvc:resources location="/public/lib/layui/" mapping="/public/lib/layui/**"></mvc:resources>
-        <mvc:resources location="/public/fonts/" mapping="/public/fonts/**"></mvc:resources>
-        
-        
+        <mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
+        <mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
+        <mvc:resources location="/jsp/" mapping="/jsp/**"></mvc:resources>
+        <mvc:resources location="/images/" mapping="/images/**"></mvc:resources>
+        <mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
+        <mvc:resources location="/Employees/" mapping="/Employees/**"></mvc:resources>
+        <mvc:resources location="/LaborRelation/" mapping="/LaborRelation/**"></mvc:resources>
      
      	<!-- 开启springmvc框架对注解的支持 -->
      	<mvc:annotation-driven></mvc:annotation-driven>

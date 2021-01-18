@@ -3,6 +3,10 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>HRSystem</display-name>
+	<welcome-file-list>
+		<welcome-file>/jsp/login.jsp</welcome-file>
+	</welcome-file-list>
 	<!-- 配置SpringMVC前端控制器DispatcherServlet -->
 	<servlet>
 		<servlet-name>springmvc</servlet-name>

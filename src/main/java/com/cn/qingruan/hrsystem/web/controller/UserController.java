@@ -16,7 +16,6 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login(String username,String password) {
 		User user = userService.findUser(username, password);
-		System.out.println(user);
-		return "success";
+		return "main";
 	}
 }
