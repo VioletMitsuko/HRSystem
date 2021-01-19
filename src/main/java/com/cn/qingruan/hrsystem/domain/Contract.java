@@ -1,14 +1,16 @@
 package com.cn.qingruan.hrsystem.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Contract {
-	private int id;
-	private Date contract_date;
-	private Date start_date;
-	private Date end_date;
-	private String comment;
-	private int emp_id;
+public class Contract implements Serializable{
+	private int id;//表的主键
+	private Date contract_date;//合同创建的日期
+	private Date start_date;//合同的开始日期
+	private Date end_date;//合同的结束日期
+	private String comment;//合同的相关注释描述信息
+	private int emp_id;//对应这份合同主人在emp表中主键
+	private Employee emp;
 	public Contract() {
 		super();
 	}
@@ -48,11 +50,17 @@ public class Contract {
 	public void setEmp_id(int emp_id) {
 		this.emp_id = emp_id;
 	}
+	public Employee getEmp() {
+		return emp;
+	}
+	public void setEmp(Employee emp) {
+		this.emp = emp;
+	}
 	@Override
 	public String toString() {
 		return "Contract [id=" + id + ", contract_date=" + contract_date + ", start_date=" + start_date + ", end_date="
-				+ end_date + ", comment=" + comment + ", emp_id=" + emp_id + "]";
+				+ end_date + ", comment=" + comment + ", emp_id=" + emp_id + ", emp=" + emp + "]";
 	}
 	
-	
+
 }

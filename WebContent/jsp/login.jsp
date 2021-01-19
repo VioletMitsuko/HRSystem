@@ -6,26 +6,47 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>用户登录</title>
-		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	</head>
 	<body>
+	<form role="form" action="#" method="post" id="login_form" name="form1">
 		<div class="login">
 			<h2>用户登录</h2>
 			<div class="login_box">
-				<!-- required就是不能为空 必须在css效果中有很大的作用 -->
-				<!-- 可以简写为required -->
-				<input type="text" name="username" required="required" /><label>用户名</label>
+				<input type="text" name="username" required="required" id=username /><label>用户名</label>
 			</div>
 			<div class="login_box">
-				<input type="password" name="password" required="required" /><label>密码</label>
+				<input type="password" name="password" required="required" id=password /><label>密码</label>
 			</div>
-			<a href="user/login">
+			<a href='javascript:document.form1.submit();' id="login_btn">
 				登录
 				<span></span>
 				<span></span>
 				<span></span>
 				<span></span>
 			</a>
+			
 		</div>
+	</form>
+<script type="text/javascript">
+$(function () {
+    $("#login_btn").click(function () {
+    	var username = $("#username").val();
+    	var password = $("#password").val();
+        $.ajax({
+            url:"${pageContext.request.contextPath}/user/login",
+            type:"POST",
+            data:$("#login_form").serialize(),
+            success:function (data) {
+            	window.location.href= "${pageContext.request.contextPath}/user/login";
+            },error:function(){
+            	alert("${msg}");
+            }
+
+        });
+    });
+});
+</script>
 	</body>
 </html>

@@ -8,7 +8,7 @@
             </a>
             <ul class="nav nav-pills nav-stacked" id="collapse_emp">
                 <li role="presentation"><a href="#" class="emp_info">员工列表</a></li>
-                <li role="presentation"><a href="#" class="emp_info">员工新增</a></li>
+                <li role="presentation"><a href="#" role="button" class="emp_add_btn" data-toggle="modal" data-target=".emp-add-modal">员工新增</a></li>
             </ul>
         </li>
     </ul>
@@ -41,7 +41,7 @@
             </a>
             <ul class="nav nav-pills nav-stacked" id="collapse_dept">
                 <li role="presentation"><a href="#" class="job_info">职位列表</a></li>
-                <li role="presentation"><a href="#" class="dept_add_btn" data-toggle="modal" data-target=".dept-add-modal">职位新增</a></li>
+                <li role="presentation"><a href="#" class="job_add_btn" data-toggle="modal" data-target=".job-add-modal">职位新增</a></li>
             </ul>
         </li>
     </ul>

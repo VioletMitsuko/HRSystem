@@ -36,4 +36,20 @@ public class JobServiceImpl implements JobService {
 		return jobDao.deleteJob(id);
 	}
 
+	@Override
+	public int addJod(int jobno, String jobname, int dept_id) {
+		
+		return jobDao.addJod(jobno, jobname, dept_id);
+	}
+
+	@Override
+	public int updateJob(int jobno, String jobname, int dept_id,int id) {
+		return jobDao.updateJob(jobno, jobname, dept_id,id);
+	}
+
+	@Override
+	public Job findJobById(int id) {
+		return jobDao.findJobById(id);
+	}
+
 }

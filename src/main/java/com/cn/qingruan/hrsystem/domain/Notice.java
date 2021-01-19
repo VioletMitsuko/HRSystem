@@ -1,18 +1,18 @@
 package com.cn.qingruan.hrsystem.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Notice {
-	private int id;
-	private String title;
-	private String context;
-	private Date create_date;
-	private int user_id;
+public class Notice implements Serializable{
+	private int id;//表的主键
+	private String title;//公告的标题
+	private String context;//公告的内容
+	private Date create_date;//公告的创建日期
+	private Date lastModifiled;//公告最后一次修改的时间
+	private int user_id;//外键引用主键，对应创建公告的用户
 	private User user;
-	@Override
-	public String toString() {
-		return "Notice [id=" + id + ", title=" + title + ", context=" + context + ", create_date=" + create_date
-				+ ", user_id=" + user_id + "]";
+	public Notice() {
+		super();
 	}
 	public int getId() {
 		return id;
@@ -38,6 +38,12 @@ public class Notice {
 	public void setCreate_date(Date create_date) {
 		this.create_date = create_date;
 	}
+	public Date getLastModifiled() {
+		return lastModifiled;
+	}
+	public void setLastModifiled(Date lastModifiled) {
+		this.lastModifiled = lastModifiled;
+	}
 	public int getUser_id() {
 		return user_id;
 	}
@@ -50,6 +56,12 @@ public class Notice {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	@Override
+	public String toString() {
+		return "Notice [id=" + id + ", title=" + title + ", context=" + context + ", create_date=" + create_date
+				+ ", lastModifiled=" + lastModifiled + ", user_id=" + user_id + ", user=" + user + "]";
+	}
 	
+	
+
 }

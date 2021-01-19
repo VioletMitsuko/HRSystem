@@ -5,7 +5,7 @@
     <title>职位新增页面</title>
 </head>
 <body>
-<div class="modal fade dept-add-modal" tabindex="-1" role="dialog" aria-labelledby="dept-add-modal">
+<div class="modal fade job-add-modal" tabindex="-1" role="dialog" aria-labelledby="job-add-modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,77 +13,69 @@
                 <h4 class="modal-title">职位新增</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal add_dept_form">
-                    <div class="form-group">
-                        <label for="add_deptName" class="col-sm-2 control-label">职位名称</label>
+                <form class="form-horizontal add_job_form">
+                     <div class="form-group">
+                        <label for="add_jobno" class="col-sm-2 control-label">职位编号</label>
                         <div class="col-sm-8">
-                            <input type="text" name="deptName" class="form-control" id="add_deptName" placeholder="人事部">
+                            <input type="text" name="jobno" class="form-control" id="add_jobno" placeholder="编号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="add_jobname" class="col-sm-2 control-label">职位名称</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="jobname" class="form-control" id="add_jobname" placeholder="人事部">
                         </div>
                     </div>
                    <div class="form-group">
-                        <label for="add_deptLeader" class="col-sm-2 control-label">所属部门</label>
+                        <label for="add_dept_id" class="col-sm-2 control-label">所属部门</label>
                         <div class="col-sm-8">
-                            <input type="text" name="deptLeader" class="form-control" id="add_deptLeader" placeholder="XXX">
+                            <input type="text" name="dept_id" class="form-control" id="add_dept_id" placeholder="所属部门ID">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary dept_save_btn">保存</button>
+                <button type="button" class="btn btn-primary job_save_btn">保存</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <script type="text/javascript">
-    <!-- ==========================部门新增操作=================================== -->
-    // 为简单操作，省去了输入名称的验证、错误信息提示等操作
-    //1 点击部门新增按钮，弹出模态框；
-    //2 输入新增部门信息，点击保存按钮，发送AJAX请求到后台进行保存；
-    //3 保存成功跳转最后一页
-    $(".dept_add_btn").click(function () {
-        $('.dept-add-modal').modal({
+     $(".job_add_btn").click(function () {
+        $('.job-add-modal').modal({
             backdrop:static,
             keyboard:true
         });
 
-    });
+    }); 
 
-    $(".dept_save_btn").click(function () {
-        var deptName = $("#add_deptName").val();
-        var deptLeader = $("#add_deptLeader").val();
+    $(".job_save_btn").click(function () {
+        var jobno = $("#add_jobno").val();
+        var jobname = $("#add_jobname").val();
+        var dept_id = $("#add_dept_id").val();
         //验证省略...
         $.ajax({
-            url:"job/addJob",
-            type:"POST",
-            data:$(".add_dept_form").serialize(),
-            success:function (result) {
-                if(result.code == 100){
-                    alert("新增成功");
-                    $('.dept-add-modal').modal("hide");
+            url:"${pageContext.request.contextPath}/job/addJob",
+            type:"GET",
+            data:{"jobno":jobno,"jobname":jobname,"dept_id":dept_id},
+            success:function (data) {
+                    alert("添加成功");
+                    $('.job-add-modal').modal("hide");
                     $.ajax({
-                        url:"job/getTotalPages",
+                        url:"${pageContext.request.contextPath}/job/getTotalPages",
                         type:"GET",
-                        success:function (result) {
-                            if (result.code == 100){
-                                var totalPage = result.extendInfo.totalPages;
-                                window.location.href="job/getJobList?pageNo="+totalPage;
-                            }
+                        success:function () {
+                           var totalPage = ${totalPages};
+                           window.location.href="${pageContext.request.contextPath}/job/getJobList?pageNo="+totalPage;
                         }
-                    });
-                }else {
-                    alert(result.extendInfo.add_dept_error);
+                    }); 
+                },error:function(){
+                	alert("添加失败");
                 }
-            }
+            });
         });
-
-
-
-    });
-
-
-
 </script>
 </body>
 </html>

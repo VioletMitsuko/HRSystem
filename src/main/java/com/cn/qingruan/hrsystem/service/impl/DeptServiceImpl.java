@@ -2,6 +2,7 @@ package com.cn.qingruan.hrsystem.service.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +19,8 @@ public class DeptServiceImpl implements DeptService {
 	public List<Dept> findAll() {
 		return deptDao.findAll();
 	}
-
+	//查询所有部门
+	public Dept findDeptById(int id) {
+		return deptDao.findDeptById(id);
+	}
 }

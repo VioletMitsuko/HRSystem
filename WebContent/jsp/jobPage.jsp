@@ -29,17 +29,21 @@
                 <!-- Table -->
                 <table class="table table-bordered table-hover" id="job_table">
                     <thead>
+                    <th>职位ID</th>
                     <th>职位编号</th>
                     <th>职位名称</th>
+                    <th>所属部门</th>
                     <th>操作</th>
                     </thead>
                     <tbody>
                         <c:forEach items="${jobs}" var="job">
                             <tr>
+                            	<td>${job.id}</td>
                                 <td>${job.jobno}</td>
                                 <td>${job.jobname}</td>
+                                <td>${job.dept.deptname}</td>
                                 <td>
-                                    <a href="#" role="button" class="btn btn-primary emp_edit_btn" data-toggle="modal" data-target=".emp-update-modal">编辑</a>
+                                    <a href="#" role="button" class="btn btn-primary job_edit_btn" data-toggle="modal" data-target=".job-update-modal">编辑</a>
                                     <a href="#" role="button" class="btn btn-danger job_delete_btn">删除</a>
                                 </td>
                             </tr>
@@ -128,23 +132,22 @@
         });
     });
 
-    <!-- ==========================员工删除操作=================================== -->
     $(".job_delete_btn").click(function () {
         var curPage = ${curPageNo};
-        var delJobId = $(this).parent().parent().find("td:eq(0)").text();
-        var delJobName = $(this).parent().parent().find("td:eq(1)").text();
+        var id = $(this).parent().parent().find("td:eq(0)").text();
+        var delJobName = $(this).parent().parent().find("td:eq(2)").text();
         if (confirm("确认删除【" + delJobName+ "】？")){
             $.ajax({
-                url:"${pageContext.request.contextPath}/job/deleteJob/"+delEmpId,
-                type:"DELETE",
-                success:function (result) {
-                    if (result.code == 100){
-                        alert("删除成功！");
-                        window.location.href="${pageContext.request.contextPath}/job/getJobList?pageNo="+curPage;
-                    }else {
-                        alert("删除失败");
-                    }
+                url:"${pageContext.request.contextPath}/job/deleteJob/"+id,
+                type:"Get",
+                data:{"id":id},
+                success:function (data) {
+                	alert("删除成功！");
+                	window.location.href="${pageContext.request.contextPath}/job/getJobList?pageNo="+curPage;
+                },error:function(){
+                	alert("删除失败！");
                 }
+                        
             });
         }
     });
