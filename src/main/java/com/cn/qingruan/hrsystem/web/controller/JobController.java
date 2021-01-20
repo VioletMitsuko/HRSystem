@@ -23,7 +23,6 @@ public class JobController {
 	private JobService jobService;
 
 	@RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
-	@ResponseBody
 	public String getTotalPages(HttpSession session) {
 		int limit = 5;
 		int totalItems = jobService.countJob();
@@ -34,26 +33,23 @@ public class JobController {
 	}
 
 	@RequestMapping(value = "/getJobList", method = RequestMethod.GET)
-	@ResponseBody
 	public ModelAndView getJobList(@RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo) {
 		ModelAndView mv = new ModelAndView("jobPage");
-		// 每页显示的记录行数
 		int limit = 5;
-		// 总记录数
 		int totalItems = jobService.countJob();
 		int temp = totalItems / limit;
 		int totalPages = (totalItems % limit == 0) ? temp : temp + 1;
-		// 每页的起始行(offset+1)数据，如第一页(offset=0，从第1(offset+1)行数据开始)
 		int offset = (pageNo - 1) * limit;
 		List<Job> jobs = jobService.findJobsByLimitAndOffset(offset, limit);
 
-		mv.addObject("jobs", jobs).addObject("totalItems", totalItems).addObject("totalPages", totalPages)
-				.addObject("curPageNo", pageNo);
+		mv.addObject("jobs", jobs)
+			.addObject("totalItems", totalItems)
+			.addObject("totalPages", totalPages)
+			.addObject("curPageNo", pageNo);
 		return mv;
 	}
 
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
-	@ResponseBody
 	public String findAll(HttpSession session) {
 		List<Job> jobs = jobService.findAll();
 		session.setAttribute("jobs", jobs);
@@ -61,7 +57,6 @@ public class JobController {
 	}
 	
 	@RequestMapping(value = "/getJobById", method = RequestMethod.GET)
-	@ResponseBody
 	public String findJobById(@PathVariable("id") int id,HttpSession session) {
 		Job job = jobService.findJobById(id);
 		if(job!=null) {
@@ -71,7 +66,6 @@ public class JobController {
 	}
 
 	@RequestMapping(value = "/deleteJob/{id}", method = RequestMethod.GET)
-	@ResponseBody
 	public String deleteJob(@PathVariable("id") int id,HttpSession session) {
 		int res = jobService.deleteJob(id);
 		if(res>0) {
@@ -81,7 +75,6 @@ public class JobController {
 	}
 	
 	@RequestMapping(value = "/addJob", method = RequestMethod.GET)
-	@ResponseBody
 	public String addJob(int jobno,String jobname,int dept_id,HttpSession session) {
 		int res = 0;
 		res = jobService.addJod(jobno, jobname, dept_id);
@@ -92,7 +85,6 @@ public class JobController {
 	}
 	
 	@RequestMapping(value = "/updateJob/{id}", method = RequestMethod.GET)
-	@ResponseBody
 	public String updateJob(int jobno,String jobname,int dept_id,@PathVariable("id") int id,HttpSession session) {
 		int res = 0;
 		res = jobService.updateJob(jobno, jobname, dept_id, id);

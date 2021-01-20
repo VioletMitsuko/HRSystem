@@ -36,7 +36,6 @@ public class ContractController {
     }
     
 	@RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
-	@ResponseBody
 	public String getTotalPages(HttpSession session) {
 		int limit = 5;
 		int totalItems = contractService.countContract();
@@ -47,7 +46,6 @@ public class ContractController {
 	}
 
 	@RequestMapping(value = "/getContractList", method = RequestMethod.GET)
-	@ResponseBody
 	public ModelAndView getContractList(@RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo) {
 		ModelAndView mv = new ModelAndView("contractPage");
 		// 每页显示的记录行数
@@ -66,7 +64,6 @@ public class ContractController {
 	}
 
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
-	@ResponseBody
 	public String findAll(HttpSession session) {
 		List<Contract> contracts = contractService.findAll();
 		session.setAttribute("contracts", contracts);
@@ -74,7 +71,6 @@ public class ContractController {
 	}
 	
 	@RequestMapping(value = "/getContractById", method = RequestMethod.GET)
-	@ResponseBody
 	public String findContractById(@PathVariable("id") int id,HttpSession session) {
 		Contract contract = contractService.findcontractById(id);
 		if(contract!=null) {
@@ -84,21 +80,18 @@ public class ContractController {
 	}
 
 	@RequestMapping(value = "/deleteContract/{id}", method = RequestMethod.GET)
-	@ResponseBody
 	public String deleteContract(@PathVariable("id") int id,HttpSession session) {
 		contractService.deleteContract(id);
 		return "contractPage";
 	}
 	
 	@RequestMapping(value = "/addContract", method = RequestMethod.GET)
-	@ResponseBody
 	public String addContract(Date contract_date,Date start_date,Date end_date,String comment,int emp_id,HttpSession session) {
 		contractService.addContract(contract_date, start_date, end_date, comment, emp_id);
 		return "contractPage";
 	}
 	
 	@RequestMapping(value = "/updateContract/{id}", method = RequestMethod.GET)
-	@ResponseBody
 	public String updateContract(Date end_date, String comment, int emp_id,@PathVariable("id") int id,HttpSession session) {
 		contractService.updateContract(end_date, comment, emp_id, id);
 		return "contractPage";
