@@ -3,6 +3,8 @@ package com.cn.qingruan.hrsystem.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Contract implements Serializable{
 	private int id;//表的主键
 	private Date contract_date;//合同创建的日期

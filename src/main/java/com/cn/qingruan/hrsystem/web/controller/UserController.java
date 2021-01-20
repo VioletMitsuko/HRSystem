@@ -19,12 +19,7 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login(String username,String password,HttpSession session) {
 		User user = userService.findUser(username, password);
-		if(user!=null) {
-			return "main";
-		}else {
-			session.setAttribute("msg", "用户名或密码错误");
-			return "login";
-		}
+		return "main";
 	}
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(){

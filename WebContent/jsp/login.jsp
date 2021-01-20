@@ -10,7 +10,7 @@
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	</head>
 	<body>
-	<form role="form" action="#" method="post" id="login_form" name="form1">
+	<form role="form" action="user/login" method="post" id="login_form" name="form1">
 		<div class="login">
 			<h2>用户登录</h2>
 			<div class="login_box">
@@ -29,24 +29,6 @@
 			
 		</div>
 	</form>
-<script type="text/javascript">
-$(function () {
-    $("#login_btn").click(function () {
-    	var username = $("#username").val();
-    	var password = $("#password").val();
-        $.ajax({
-            url:"${pageContext.request.contextPath}/user/login",
-            type:"POST",
-            data:$("#login_form").serialize(),
-            success:function (data) {
-            	window.location.href= "${pageContext.request.contextPath}/user/login";
-            },error:function(){
-            	alert("${msg}");
-            }
 
-        });
-    });
-});
-</script>
 	</body>
 </html>

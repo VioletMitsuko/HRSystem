@@ -18,8 +18,8 @@
                 <span class="glyphicon glyphicon-cloud" aria-hidden="true">合同管理</span>
             </a>
             <ul class="nav nav-pills nav-stacked" id="collapse_dept">
-                <li role="presentation"><a href="" class="dept_info">合同列表</a></li>
-                <li role="presentation"><a href="#" class="dept_add_btn" data-toggle="modal" data-target=".dept-add-modal">合同新增</a></li>
+                <li role="presentation"><a href="#" class="contract_info">合同列表</a></li>
+                <li role="presentation"><a href="#" class="contract_add_btn" data-toggle="modal" data-target=".contract-add-modal">合同新增</a></li>
             </ul>
         </li>
     </ul>  
@@ -29,7 +29,7 @@
                 <span class="glyphicon glyphicon-cloud" aria-hidden="true">部门管理</span>
             </a>
             <ul class="nav nav-pills nav-stacked" id="collapse_dept">
-                <li role="presentation"><a href="" class="dept_info">部门列表</a></li>
+                <li role="presentation"><a href="#" class="dept_info">部门列表</a></li>
                 <li role="presentation"><a href="#" class="dept_add_btn" data-toggle="modal" data-target=".dept-add-modal">部门新增</a></li>
             </ul>
         </li>
@@ -66,7 +66,7 @@
     });
     //跳转到合同页面
     $(".contract_info").click(function () {
-        $(this).attr("href", "${pageContext.request.contextPath}/employee/findAll");
+        $(this).attr("href", "${pageContext.request.contextPath}/contract/getContractList");
     });
     //跳转到部门页面
     $(".dept_info").click(function () {
@@ -78,7 +78,7 @@
     });
     //跳转到公告页面
     $(".notice_info").click(function () {
-        $(this).attr("href", "${pageContext.request.contextPath}/job/findAll");
+        $(this).attr("href", "${pageContext.request.contextPath}/notice/findAll");
     });
 </script>
 </body>
