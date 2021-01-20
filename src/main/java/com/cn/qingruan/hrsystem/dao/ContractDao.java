@@ -49,6 +49,6 @@ public interface ContractDao {
 	public int addContract(@Param("contract_date") Date contract_date,@Param("start_date") Date start_date,@Param("end_date") Date end_date,@Param("comment") String comment,@Param("emp_id") int emp_id);
 	
 	//ĞŞ¸ÄºÏÍ¬
-	@Update("update contract set contract_date=#{contract_date},start_date=#{start_date},end_date=#{end_date},comment=#{comment},emp_id=#{emp_id} where id=#{id}")
-	public int updateContract(@Param("contract_date") Date contractno,@Param("start_date") Date start_date,@Param("end_date") Date end_date,@Param("comment") String comment,@Param("emp_id") int emp_id,@Param("id") int id);
+	@Update("update contract set end_date=#{end_date},comment=#{comment},emp_id=#{emp_id} where id=#{id}")
+	public int updateContract(@Param("end_date") Date end_date,@Param("comment") String comment,@Param("emp_id") int emp_id,@Param("id") int id);
 }

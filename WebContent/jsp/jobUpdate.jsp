@@ -16,19 +16,19 @@
                     <div class="form-group">
                         <label for="update_jobno" class="col-sm-2 control-label">职位编号</label>
                         <div class="col-sm-8">
-                            <input type="text" name="jobno" class="form-control" id="update_jobno" placeholder="编号">
+                            <input type="text" name="jobno" class="form-control" id="update_jobno" placeholder="${job.jobno}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="update_jobname" class="col-sm-2 control-label">职位名称</label>
                         <div class="col-sm-8">
-                            <input type="text" name="jobname" class="form-control" id="update_jobname" placeholder="名称">
+                            <input type="text" name="jobname" class="form-control" id="update_jobname" placeholder="${job.jobname}">
                         </div>
                     </div>
                    <div class="form-group">
                         <label for="update_dept_id" class="col-sm-2 control-label">所属部门</label>
                         <div class="col-sm-8">
-                            <input type="text" name="dept_id" class="form-control" id="update_dept_id" placeholder="所属部门ID">
+                            <input type="text" name="dept_id" class="form-control" id="update_dept_id" placeholder="所属部门ID${job.dept.id}">
                         </div>
                     </div>
                 </form>

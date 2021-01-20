@@ -25,5 +25,5 @@ public interface ContractService {
 	public int addContract(Date contract_date,Date start_date,Date end_date,String comment,int emp_id);
 
 	// ĞŞ¸ÄºÏÍ¬
-	public int updateContract(Date contract_date,Date start_date,Date end_date, String comment, int emp_id,int id);
+	public int updateContract(Date end_date, String comment, int emp_id,int id);
 }

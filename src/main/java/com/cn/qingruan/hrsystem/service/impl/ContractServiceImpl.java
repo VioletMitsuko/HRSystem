@@ -51,9 +51,9 @@ public class ContractServiceImpl implements ContractService{
 	}
 
 	@Override
-	public int updateContract(Date contract_date, Date start_date, Date end_date, String comment, int emp_id, int id) {
+	public int updateContract(Date end_date, String comment, int emp_id, int id) {
 		// TODO Auto-generated method stub
-		return contractDao.updateContract(contract_date, start_date, end_date, comment, emp_id, id);
+		return contractDao.updateContract(end_date, comment, emp_id, id);
 	}
 
 }

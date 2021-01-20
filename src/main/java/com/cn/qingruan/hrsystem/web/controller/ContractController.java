@@ -99,8 +99,8 @@ public class ContractController {
 	
 	@RequestMapping(value = "/updateContract/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public String updateContract(Date contract_date,Date start_date,Date end_date, String comment, int emp_id,@PathVariable("id") int id,HttpSession session) {
-		contractService.updateContract(contract_date, start_date, end_date, comment, emp_id, id);
+	public String updateContract(Date end_date, String comment, int emp_id,@PathVariable("id") int id,HttpSession session) {
+		contractService.updateContract(end_date, comment, emp_id, id);
 		return "contractPage";
 	}
 }
