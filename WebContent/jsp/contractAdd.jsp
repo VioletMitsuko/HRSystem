@@ -38,7 +38,7 @@
                             <input type="text" name="comment" class="form-control" id="add_comment" placeholder="合同状态">
                         </div>
                     </div>
-                                       <div class="form-group">
+                    <div class="form-group">
                         <label for="add_emp_id" class="col-sm-2 control-label">签约人</label>
                         <div class="col-sm-8">
                             <input type="text" name="emp_id" class="form-control" id="add_emp_id" placeholder="签约员工ID">

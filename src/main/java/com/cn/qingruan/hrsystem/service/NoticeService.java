@@ -27,5 +27,5 @@ public interface NoticeService {
 	public int addNotice(String title,String context,Date create_date,Date lastModifiled,int user_id);
 	
 	//ÐÞ¸Ä¹«¸æ
-	public int updateNotice(String title,String context,Date create_date,Date lastModifiled,int user_id,int id);
+	public int updateNotice(String title,String context,Date lastModifiled,int user_id,int id);
 }

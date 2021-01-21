@@ -42,8 +42,8 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public int updateNotice(String title, String context, Date create_date, Date lastModifiled, int user_id, int id) {
-		return noticeDao.updateNotice(title, context, create_date, lastModifiled, user_id, id);
+	public int updateNotice(String title, String context, Date lastModifiled, int user_id, int id) {
+		return noticeDao.updateNotice(title, context ,lastModifiled, user_id, id);
 	}
 
 	@Override

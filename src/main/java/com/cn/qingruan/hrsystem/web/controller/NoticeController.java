@@ -85,14 +85,14 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "/addNotice", method = RequestMethod.GET)
-	public String addContract(String title,String context,Date create_date,Date lastModifiled,int user_id,HttpSession session) {
-		noticeService.addNotice(title, context, create_date, lastModifiled, user_id);
+	public String addContract(String title,String context,Date create_date,int user_id,HttpSession session) {
+		noticeService.addNotice(title, context, create_date, new Date(), user_id);
 		return "noticePage";
 	}
 	
-	@RequestMapping(value = "/updateContract/{id}", method = RequestMethod.GET)
-	public String updateContract(String title,String context,Date create_date,int user_id,@PathVariable("id") int id,HttpSession session) {
-		noticeService.updateNotice(title, context, create_date, new Date(), user_id, id);
+	@RequestMapping(value = "/updateNotice/{id}", method = RequestMethod.GET)
+	public String updateNotice(String title,String context,int user_id,@PathVariable("id") int id,HttpSession session) {
+		noticeService.updateNotice(title, context, new Date(), user_id, id);
 		return "noticePage";
 	}
 }

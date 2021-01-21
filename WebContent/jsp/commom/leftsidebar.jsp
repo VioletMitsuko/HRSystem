@@ -52,7 +52,7 @@
             </a>
             <ul class="nav nav-pills nav-stacked" id="collapse_dept">
                 <li role="presentation"><a href="#" class="notice_info">公告列表</a></li>
-                <li role="presentation"><a href="#" class="dept_add_btn" data-toggle="modal" data-target=".dept-add-modal">公告新增</a></li>
+                <li role="presentation"><a href="#" class="notice_add_btn" data-toggle="modal" data-target=".notice-add-modal">公告新增</a></li>
             </ul>
         </li>
     </ul>
@@ -78,7 +78,7 @@
     });
     //跳转到公告页面
     $(".notice_info").click(function () {
-        $(this).attr("href", "${pageContext.request.contextPath}/notice/findAll");
+        $(this).attr("href", "${pageContext.request.contextPath}/notice/getNoticeList");
     });
 </script>
 </body>

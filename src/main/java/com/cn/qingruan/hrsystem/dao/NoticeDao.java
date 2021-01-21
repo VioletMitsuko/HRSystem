@@ -27,7 +27,7 @@ public interface NoticeDao {
 	public Notice findNoticeById(@Param("id") int id);
 	
 	//分页查询
-	@Select("select * from contract limit #{offset},#{limit}")
+	@Select("select * from notice limit #{offset},#{limit}")
 	@Results(id = "noticeMap",value = {
 			@Result(id = true, column = "id", property = "id"),
 			@Result(column = "title", property = "title"),
@@ -51,6 +51,6 @@ public interface NoticeDao {
 	public int addNotice(@Param("title") String title,@Param("context") String context,@Param("create_date") Date create_date,@Param("lastModifiled") Date lastModifiled,@Param("user_id") int user_id);
 	
 	//修改公告
-	@Update("update notice set title=#{title},context=#{context},create_date=#{create_date},lastModifiled=#{lastModifiled},user_id=#{user_id} where id=#{id}")
-	public int updateNotice(@Param("title") String title,@Param("context") String context,@Param("create_date") Date create_date,@Param("lastModifiled") Date lastModifiled,@Param("user_id") int user_id,@Param("id") int id);
+	@Update("update notice set title=#{title},context=#{context},lastModifiled=#{lastModifiled},user_id=#{user_id} where id=#{id}")
+	public int updateNotice(@Param("title") String title,@Param("context") String context,@Param("lastModifiled") Date lastModifiled,@Param("user_id") int user_id,@Param("id") int id);
 }

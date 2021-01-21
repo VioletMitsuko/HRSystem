@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"  isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>人力资源系统后台</title>
@@ -14,7 +15,6 @@
         <!-- 左侧栏 -->
         <%@ include file="./commom/leftsidebar.jsp"%>
 
-        <!-- 中间轮播图内容 -->
         <div class="hrms_main_ad col-sm-10">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -23,7 +23,10 @@
                 <div class="panel-body" style="position:relative; top:-15px;">
                 	<h2>公告：</h2><br>
                 	<div class="panel-body" style="position:relative; top:-15px;">
-                		<font>是的</font>
+                		<c:forEach items="${notices}" var="notice">
+                                <h3>${notice.title}</h3> 
+                                ${notice.context}<br>
+                        </c:forEach>
                 	</div>
                 </div><!-- /.panel-body -->
             </div><!-- /.panel -->

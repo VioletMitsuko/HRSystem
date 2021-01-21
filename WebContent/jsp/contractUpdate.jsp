@@ -27,7 +27,7 @@
                             <input type="text" name="start_date" class="form-control" id="update_start_date" placeholder="起始日期" disabled="disabled">
                         </div>
                     </div>
-                                        <div class="form-group">
+                   <div class="form-group">
                         <label for="update_end_date" class="col-sm-2 control-label">结束日期</label>
                         <div class="col-sm-8">
                             <input type="date" name="end_date" class="form-control" id="update_end_date" placeholder="结束日期">
