@@ -21,15 +21,15 @@ public class ContractServiceImpl implements ContractService{
 	}
 
 	@Override
-	public Contract findcontractById(int id) {
+	public Contract findContractById(int id) {
 		// TODO Auto-generated method stub
-		return contractDao.findcontractById(id);
+		return contractDao.findContractById(id);
 	}
 
 	@Override
-	public List<Contract> findcontractsByLimitAndOffset(Integer offset, Integer limit) {
+	public List<Contract> findContractsByLimitAndOffset(Integer offset, Integer limit) {
 		// TODO Auto-generated method stub
-		return contractDao.findcontractsByLimitAndOffset(offset, limit);
+		return contractDao.findContractsByLimitAndOffset(offset, limit);
 	}
 
 	@Override

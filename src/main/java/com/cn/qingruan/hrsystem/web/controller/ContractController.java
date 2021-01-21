@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,7 +55,7 @@ public class ContractController {
 		int totalPages = (totalItems % limit == 0) ? temp : temp + 1;
 		// 每页的起始行(offset+1)数据，如第一页(offset=0，从第1(offset+1)行数据开始)
 		int offset = (pageNo - 1) * limit;
-		List<Contract> contracts = contractService.findcontractsByLimitAndOffset(offset, limit);
+		List<Contract> contracts = contractService.findContractsByLimitAndOffset(offset, limit);
 
 		mv.addObject("contracts", contracts).addObject("totalItems", totalItems).addObject("totalPages", totalPages)
 				.addObject("curPageNo", pageNo);
@@ -72,7 +71,7 @@ public class ContractController {
 	
 	@RequestMapping(value = "/getContractById", method = RequestMethod.GET)
 	public String findContractById(@PathVariable("id") int id,HttpSession session) {
-		Contract contract = contractService.findcontractById(id);
+		Contract contract = contractService.findContractById(id);
 		if(contract!=null) {
 			session.setAttribute("contract", contract);
 		}
