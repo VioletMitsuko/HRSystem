@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"  isELIgnored="false"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -23,10 +23,8 @@
                 <div class="panel-body" style="position:relative; top:-15px;">
                 	<h2>公告：</h2><br>
                 	<div class="panel-body" style="position:relative; top:-15px;">
-                		<c:forEach items="${notices}" var="notice">
-                                <h3>${notice.title}</h3> 
-                                ${notice.context}<br>
-                        </c:forEach>
+                		<h3 align="center">${notice.title}</h3><br>
+                        <div style="margin: auto 100px">${notice.context}</div>
                 	</div>
                 </div><!-- /.panel-body -->
             </div><!-- /.panel -->

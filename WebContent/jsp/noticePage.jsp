@@ -50,6 +50,7 @@
                                 <td>
                                     <a href="#" role="button" class="btn btn-primary notice_edit_btn" data-toggle="modal" data-target=".notice-update-modal">编辑</a>
                                     <a href="#" role="button" class="btn btn-danger notice_delete_btn">删除</a>
+                                    <a href="#" role="button" class="btn btn-primary notice_show_btn">展示</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -138,7 +139,6 @@
     });
 
     $(".notice_delete_btn").click(function () {
-        var curPage = ${curPageNo};
         var id = $(this).parent().parent().find("td:eq(0)").text();
         var delNoticeName = $(this).parent().parent().find("td:eq(1)").text();
         if (confirm("确认删除【" + delNoticeName+ "】？")){
@@ -151,6 +151,25 @@
                 	window.location.href="${pageContext.request.contextPath}/notice/getNoticeList?pageNo="+curPage;
                 },error:function(){
                 	alert("删除失败！");
+                }
+                        
+            });
+        }
+    });
+    
+    $(".notice_show_btn").click(function () {
+        var id = $(this).parent().parent().find("td:eq(0)").text();
+        var delNoticeName = $(this).parent().parent().find("td:eq(1)").text();
+        if (confirm("确认展示【" + delNoticeName+ "】？")){
+            $.ajax({
+                url:"${pageContext.request.contextPath}/user/showNotice/"+id,
+                type:"Get",
+                data:{"id":id},
+                success:function (data) {
+                	alert("展示成功！");
+                	window.location.href="${pageContext.request.contextPath}/user/main";
+                },error:function(){
+                	alert("展示失败！");
                 }
                         
             });
