@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
     <title>人力资源系统后台</title>
@@ -25,6 +26,9 @@
                 	<div class="panel-body" style="position:relative; top:-15px;">
                 		<h3 align="center">${notice.title}</h3><br>
                         <div style="margin: auto 100px">${notice.context}</div>
+                        <div align="right">
+                        	<fmt:formatDate value="${notice.create_date}" dateStyle="medium"/>
+                        </div>
                 	</div>
                 </div><!-- /.panel-body -->
             </div><!-- /.panel -->

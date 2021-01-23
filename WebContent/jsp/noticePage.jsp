@@ -80,10 +80,10 @@
                             </c:if>
 
                             <c:forEach begin="1" end="${totalPages<5?totalPages:5}" step="1" var="itemPage">
-                                <c:if test="${curPageNo == itemPages}">
+                                <c:if test="${curPageNo == itemPage}">
                                     <li class="active"><a href="${pageContext.request.contextPath}/notice/getNoticeList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
-                                <c:if test="${curPageNo != itemPages}">
+                                <c:if test="${curPageNo != itemPage}">
                                     <li><a href="${pageContext.request.contextPath}/notice/getNoticeList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
                             </c:forEach>

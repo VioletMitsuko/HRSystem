@@ -3,6 +3,8 @@ package com.cn.qingruan.hrsystem.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Notice implements Serializable{
 	private int id;//表的主键
 	private String title;//公告的标题

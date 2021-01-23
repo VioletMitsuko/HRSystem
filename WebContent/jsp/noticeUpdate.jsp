@@ -18,19 +18,19 @@
                     <div class="form-group">
                         <label for="update_title" class="col-sm-2 control-label">公告标题</label>
                         <div class="col-sm-8">
-                            <input type="text" name="title" class="form-control" id="update_title" placeholder="公告标题">
+                            <input type="text" name="title" class="form-control" id="update_title" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="update_context" class="col-sm-2 control-label">公告内容</label>
                         <div class="col-sm-8">
-                            <input type="text" name="context" class="form-control" id="update_context" height="400px" placeholder="公告内容">
+                            <input type="text" name="context" class="form-control" id="update_context">
                         </div>
                     </div>
                    <div class="form-group">
                         <label for="update_user_id" class="col-sm-2 control-label">发布人</label>
                         <div class="col-sm-8">
-                            <input type="text" name="user_id" class="form-control" id="update_user_id" placeholder="发布人ID">
+                            <input type="text" name="user_id" class="form-control" id="update_user_id" >
                         </div>
                     </div>
                 </form>
@@ -47,6 +47,16 @@
 <script type="text/javascript">
      $(".notice_edit_btn").click(function () {
        id = $(this).parent().parent().find("td:eq(0)").text();
+       $.ajax({
+           url:"${pageContext.request.contextPath}/notice/findNoticeById?id="+id,
+           type:"GET",
+           success:function (data) {                            
+               $("#update_title").val(data.title);
+               $("#update_context").val(data.context);
+               $("#update_user_id").val(data.user_id);              
+           }
+
+       });
     }); 
 
     $(".notice_update_btn").click(function () {

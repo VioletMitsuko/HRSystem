@@ -13,7 +13,7 @@ import com.cn.qingruan.hrsystem.domain.User;
 public interface UserDao {
 	//查询用户
 	@Select("select * from user where username=#{username} and password=#{password}")
-	public User findUser(@Param("username") String username,@Param("password") String password);
+	public User findUserByUsernameAndPassword(User user);
 	//根据id查询用户
 	@Select("select * from user where id=#{id}")
 	public User findUserById(int id);

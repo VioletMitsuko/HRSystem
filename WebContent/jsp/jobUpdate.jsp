@@ -16,19 +16,19 @@
                     <div class="form-group">
                         <label for="update_jobno" class="col-sm-2 control-label">职位编号</label>
                         <div class="col-sm-8">
-                            <input type="text" name="jobno" class="form-control" id="update_jobno" placeholder="${job.jobno}">
+                            <input type="text" name="jobno" class="form-control" id="update_jobno" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="update_jobname" class="col-sm-2 control-label">职位名称</label>
                         <div class="col-sm-8">
-                            <input type="text" name="jobname" class="form-control" id="update_jobname" placeholder="${job.jobname}">
+                            <input type="text" name="jobname" class="form-control" id="update_jobname" >
                         </div>
                     </div>
                    <div class="form-group">
                         <label for="update_dept_id" class="col-sm-2 control-label">所属部门</label>
                         <div class="col-sm-8">
-                            <input type="text" name="dept_id" class="form-control" id="update_dept_id" placeholder="所属部门ID${job.dept.id}">
+                            <input type="text" name="dept_id" class="form-control" id="update_dept_id" >
                         </div>
                     </div>
                 </form>
@@ -45,6 +45,16 @@
 <script type="text/javascript">
      $(".job_edit_btn").click(function () {
         id = $(this).parent().parent().find("td:eq(0)").text();
+        $.ajax({
+            url:"${pageContext.request.contextPath}/job/findJobById?id="+id,
+            type:"GET",
+            success:function (data) {                            
+                $("#update_jobno").val(data.jobno);
+                $("#update_jobname").val(data.jobname);
+                $("#update_dept_id").val(data.dept_id);              
+            }
+
+        });
     }); 
 
     $(".job_update_btn").click(function () {

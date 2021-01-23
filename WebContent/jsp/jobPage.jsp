@@ -60,38 +60,38 @@
                             <li><a href="${pageContext.request.contextPath}/job/getJobList?pageNo=1">首页</a></li>
                             <c:if test="${curPageNo==1}">
                                 <li class="disabled">
-                                    <a href="#" aria-label="Previous" class="prePage">
+                                    <a href="${pageContext.request.contextPath}/job/getJobList?pageNo=1" aria-label="Previous" class="prePage">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                             </c:if>
                             <c:if test="${curPageNo!=1}">
                                 <li>
-                                    <a href="#" aria-label="Previous" class="prePage">
+                                    <a href="${pageContext.request.contextPath}/job/getJobList?pageNo=${curPageNo-1}" aria-label="Previous" class="prePage">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                             </c:if>
 
                             <c:forEach begin="1" end="${totalPages<5?totalPages:5}" step="1" var="itemPage">
-                                <c:if test="${curPageNo == itemPages}">
+                                <c:if test="${curPageNo == itemPage}">
                                     <li class="active"><a href="${pageContext.request.contextPath}/job/getJobList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
-                                <c:if test="${curPageNo != itemPages}">
+                                <c:if test="${curPageNo != itemPage}">
                                     <li><a href="${pageContext.request.contextPath}/job/getJobList?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
                             </c:forEach>
 
                             <c:if test="${curPageNo==totalPages}">
                                 <li class="disabled" class="nextPage">
-                                    <a href="#" aria-label="Next">
+                                    <a href="${pageContext.request.contextPath}/job/getJobList?pageNo=${totalPages}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
                             </c:if>
                             <c:if test="${curPageNo!=totalPages}">
                                 <li>
-                                    <a href="#" aria-label="Next" class="nextPage">
+                                    <a href="${pageContext.request.contextPath}/job/getJobList?pageNo=${curPageNo+1}" aria-label="Next" class="nextPage">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
@@ -113,7 +113,7 @@
 
 
 <script>
-    $(function () {
+/*     $(function () {
         //上一页
         var curPage = ${curPageNo};
         var totalPages = ${totalPages};
@@ -130,7 +130,7 @@
                 $(this).attr("href", "${pageContext.request.contextPath}/job/getJobList?pageNo="+pageNo);
             }
         });
-    });
+    }); */
 
     $(".job_delete_btn").click(function () {
         var curPage = ${curPageNo};

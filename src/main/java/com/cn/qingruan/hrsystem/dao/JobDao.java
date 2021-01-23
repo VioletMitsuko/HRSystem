@@ -23,7 +23,7 @@ public interface JobDao {
 	
 	//根据id查询职位
 	@Select("select * from job where id=#{id}")
-	public Job findJobById(@Param("id") int id);
+	public Job findJobById(@Param("id") String id);
 	//分页查询
 	@Select("select * from job limit #{offset},#{limit}")
 	@Results(id = "jobMap",value = {

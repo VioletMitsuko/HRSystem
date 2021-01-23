@@ -9,7 +9,7 @@ public interface JobService {
 	//查询所有职位
 	public List<Job> findAll();
 	//根据id查询职位
-	public Job findJobById(int id);
+	public Job findJobById(String id);
 	//分页查询
 	public List<Job> findJobsByLimitAndOffset(Integer offset,Integer limit);
 	

@@ -20,6 +20,7 @@ public class DeptServiceImpl implements DeptService {
 		return deptDao.findAll();
 	}
 	//查询所有部门
+	@Override
 	public Dept findDeptById(int id) {
 		return deptDao.findDeptById(id);
 	}

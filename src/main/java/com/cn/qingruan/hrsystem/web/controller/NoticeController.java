@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -69,13 +70,10 @@ public class NoticeController {
 		return "noticePage";
 	}
 	
-	@RequestMapping(value = "/getNoticeById", method = RequestMethod.GET)
-	public String findNoticeById(@PathVariable("id") int id,HttpSession session) {
-		Notice notice = noticeService.findNoticeById(id);
-		if(notice!=null) {
-			session.setAttribute("notice", notice);
-		}
-		return "noticePage";
+	@RequestMapping(value = "/findNoticeById", method = RequestMethod.GET)
+	public @ResponseBody Notice findNoticeById(String id,HttpSession session) {
+		
+		return noticeService.findNoticeById(id);
 	}
 
 	@RequestMapping(value = "/deleteNotice/{id}", method = RequestMethod.GET)

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -31,74 +31,78 @@
                     <thead>
                     <th>员工编号</th>
                     <th>员工姓名</th>
-                    <th>联系电话</th>
+                    <th>职位编号</th>
                     <th>性别</th>
                     <th>部门</th>
+                    <th>职位</th>
                     <th>操作</th>
                     </thead>
                     <tbody>
-                        <c:forEach items="${employees}" var="emp">
+                        <c:forEach items="${pageBean.list}" var="employee">
                             <tr>
-                                <td>${emp.empId}</td>
-                                <td>${emp.empname}</td>
-                                <td>${emp.phone}</td>
-                                <td>${emp.gender}</td>
-                                <td></td>
+                                <td>${employee.empID}</td>
+                                <td>${employee.empname}</td>
+                                <td>${employee.jobnum}</td>
+                               	<td>${employee.gender eq 0 ? '男':'女'}</td>                                                                         
+                                <td>${employee.dept.deptname }</td>
+                                <td>${employee.job.jobname}</td>
                                 <td>
                                     <a href="#" role="button" class="btn btn-primary emp_edit_btn" data-toggle="modal" data-target=".emp-update-modal">编辑</a>
                                     <a href="#" role="button" class="btn btn-danger emp_delete_btn">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>
+                     
                     </tbody>
                 </table>
 
                 <div class="panel-body">
                     <div class="table_items">
-                        当前第<span class="badge">${curPage}</span>页，共有<span class="badge">${totalPages}</span>页，总记录数<span class="badge">${totalItems}</span>条。
+                        当前第<span class="badge">${pageBean.curPage}</span>页，共有<span class="badge">${pageBean.totalPages}</span>页，总记录数<span class="badge">${pageBean.totalItems}</span>条。
                     </div>
                     <nav aria-label="Page navigation" class="pull-right">
                         <ul class="pagination">
-                            <li><a href="/hrms/emp/getEmpList?pageNo=1">首页</a></li>
-                            <c:if test="${curPage==1}">
+                            <li><a href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo=1">首页</a></li>
+                            <c:if test="${pageBean.curPage==1}">
                                 <li class="disabled">
-                                    <a href="#" aria-label="Previous" class="prePage">
+                                    <a href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo=1" aria-label="Previous" class="prePage">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                             </c:if>
-                            <c:if test="${curPage!=1}">
+                        
+                            <c:if test="${pageBean.curPage!=1}">
                                 <li>
-                                    <a href="#" aria-label="Previous" class="prePage">
+                                    <a href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo=${pageBean.curPage-1}" aria-label="Previous" class="prePage">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                             </c:if>
 
-                            <c:forEach begin="1" end="${totalPages<5?totalPages:5}" step="1" var="itemPage">
-                                <c:if test="${curPage == itemPage}">
-                                    <li class="active"><a href="/hrms/emp/getEmpList?pageNo=${itemPage}">${itemPage}</a></li>
+                            <c:forEach begin="1" end="${pageBean.totalPages<5?pageBean.totalPages:5}" step="1" var="itemPage">
+                                <c:if test="${pageBean.curPage == itemPage}">
+                                    <li class="active"><a href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
-                                <c:if test="${curPage != itemPage}">
-                                    <li><a href="/hrms/emp/getEmpList?pageNo=${itemPage}">${itemPage}</a></li>
+                                <c:if test="${pageBean.curPage != itemPage}">
+                                    <li><a href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo=${itemPage}">${itemPage}</a></li>
                                 </c:if>
                             </c:forEach>
 
-                            <c:if test="${curPage==totalPages}">
+                            <c:if test="${pageBean.curPage==pageBean.totalPages}">
                                 <li class="disabled" class="nextPage">
-                                    <a href="#" aria-label="Next">
+                                    <a href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo=${pageBean.totalPages}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
                             </c:if>
-                            <c:if test="${curPage!=totalPages}">
+                            <c:if test="${pageBean.curPage!=pageBean.totalPages}">
                                 <li>
-                                    <a href="#" aria-label="Next" class="nextPage">
+                                    <a href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo=${pageBean.curPage+1}" aria-label="Next" class="nextPage">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
                             </c:if>
-                            <li><a href="/hrms/emp/getEmpList?pageNo=${totalPages}">尾页</a></li>
+                            <li><a href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo=${pageBean.totalPages}">尾页</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -106,7 +110,7 @@
         </div><!-- /.emp_info -->
 
         <!-- 尾部 -->
-        <%@ include file="./commom/foot.jsp"%>
+      <%--  <%@ include file="./commom/foot.jsp"%>--%>
     </div><!-- /.hrms_body -->
 </div><!-- /.container -->
 
@@ -115,7 +119,8 @@
 
 
 <script>
-    $(function () {
+
+   /*  $(function () {
         //上一页
         var curPage = ${curPage};
         var totalPages = ${totalPages};
@@ -132,24 +137,20 @@
                 $(this).attr("href", "/hrms/emp/getEmpList?pageNo="+pageNo);
             }
         });
-    })
+    }) */
 
-    <!-- ==========================员工删除操作=================================== -->
+   
     $(".emp_delete_btn").click(function () {
-        var curPage = ${curPage};
+        var curPage = ${pageBean.curPage};
         var delEmpId = $(this).parent().parent().find("td:eq(0)").text();
         var delEmpName = $(this).parent().parent().find("td:eq(1)").text();
         if (confirm("确认删除【" + delEmpName+ "】的信息吗？")){
             $.ajax({
-                url:"/hrms/emp/deleteEmp/"+delEmpId,
-                type:"DELETE",
-                success:function (result) {
-                    if (result.code == 100){
-                        alert("删除成功！");
-                        window.location.href="/hrms/emp/getEmpList?pageNo="+curPage;
-                    }else {
-                        alert(result.extendInfo.emp_del_error);
-                    }
+                url:"${pageContext.request.contextPath}/employee/deleteEmp?empID="+delEmpId,
+                type:"GET",
+                success:function() {                   
+                    alert("删除成功！");
+                    window.location.href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo="+curPage;                                      
                 }
             });
         }

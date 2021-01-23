@@ -48,7 +48,7 @@ public class JobServiceImpl implements JobService {
 	}
 
 	@Override
-	public Job findJobById(int id) {
+	public Job findJobById(String id) {
 		return jobDao.findJobById(id);
 	}
 

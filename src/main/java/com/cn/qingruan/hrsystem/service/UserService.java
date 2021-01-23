@@ -7,7 +7,7 @@ import com.cn.qingruan.hrsystem.domain.User;
 
 public interface UserService {
 	//查询用户
-	public User findUser(String username,String password);
+	public User findUserByUsernameAndPassword(User user);
 	//根据id查询用户
 	public User findUserById(int id);
 	//查询所有公告

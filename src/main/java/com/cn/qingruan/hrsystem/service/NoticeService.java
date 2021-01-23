@@ -12,7 +12,7 @@ public interface NoticeService {
 	public List<Notice> findAll();
 	
 	// 根据id查询合同
-	public Notice findNoticeById(int id);
+	public Notice findNoticeById(String id);
 	
 	// 分页查询
 	public List<Notice> findNoticeByLimitAndOffset(Integer offset, Integer limit);

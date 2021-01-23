@@ -21,7 +21,7 @@ public class ContractServiceImpl implements ContractService{
 	}
 
 	@Override
-	public Contract findContractById(int id) {
+	public Contract findContractById(String id) {
 		// TODO Auto-generated method stub
 		return contractDao.findContractById(id);
 	}

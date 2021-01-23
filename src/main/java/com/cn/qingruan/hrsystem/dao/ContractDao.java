@@ -23,7 +23,7 @@ public interface ContractDao {
 
 	// 根据id查询合同
 	@Select("select * from contract where id=#{id}")
-	public Contract findContractById(@Param("id") int id);
+	public Contract findContractById(@Param("id") String id);
 
 	// 分页查询
 	@Select("select * from contract limit #{offset},#{limit}")

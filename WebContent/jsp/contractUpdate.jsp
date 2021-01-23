@@ -18,31 +18,31 @@
                     <div class="form-group">
                         <label for="update_contract_date" class="col-sm-2 control-label">签约日期</label>
                         <div class="col-sm-8">
-                            <input type="text" name="contract_date" class="form-control" id="update_contract_date" placeholder="签约日期" disabled="disabled">
+                            <input type="date" name="contract_date" class="form-control" id="update_contract_date" disabled="disabled">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="update_start_date" class="col-sm-2 control-label">起始日期</label>
                         <div class="col-sm-8">
-                            <input type="text" name="start_date" class="form-control" id="update_start_date" placeholder="起始日期" disabled="disabled">
+                            <input type="date" name="start_date" class="form-control" id="update_start_date" disabled="disabled">
                         </div>
                     </div>
                    <div class="form-group">
                         <label for="update_end_date" class="col-sm-2 control-label">结束日期</label>
                         <div class="col-sm-8">
-                            <input type="date" name="end_date" class="form-control" id="update_end_date" placeholder="结束日期">
+                            <input type="date" name="end_date" class="form-control" id="update_end_date" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="update_commment" class="col-sm-2 control-label">合同状态</label>
                         <div class="col-sm-8">
-                            <input type="text" name="comment" class="form-control" id="update_comment" placeholder="合同状态">
+                            <input type="text" name="comment" class="form-control" id="update_comment" >
                         </div>
                     </div>
                    <div class="form-group">
                         <label for="update_emp_id" class="col-sm-2 control-label">签约员工</label>
                         <div class="col-sm-8">
-                            <input type="text" name="emp_id" class="form-control" id="update_emp_id" placeholder="签约员工ID">
+                            <input type="text" name="emp_id" class="form-control" id="update_emp_id" >
                         </div>
                     </div>
                 </form>
@@ -59,6 +59,20 @@
 <script type="text/javascript">
      $(".contract_edit_btn").click(function () {
        id = $(this).parent().parent().find("td:eq(0)").text();
+       // 根据id或name查询出对应员工信息进行回显；
+       $.ajax({
+           url:"${pageContext.request.contextPath}/contract/findContractById?id="+id,
+           type:"GET",
+           success:function (data) {                            
+               $("#update_contract_date").val(data.contract_date);
+               $("#update_start_date").val(data.start_date);
+               $("#update_end_date").val(data.end_date);
+               $("#update_comment").val(data.comment);
+               $("#update_emp_id").val(data.emp_id);              
+           }
+
+       });
+	
     }); 
 
     $(".contract_update_btn").click(function () {

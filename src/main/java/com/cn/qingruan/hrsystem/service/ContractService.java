@@ -10,7 +10,7 @@ public interface ContractService {
 	public List<Contract> findAll();
 
 	// 根据id查询合同
-	public Contract findContractById(int id);
+	public Contract findContractById(String id);
 	// 分页查询
 
 	public List<Contract> findContractsByLimitAndOffset(Integer offset, Integer limit);

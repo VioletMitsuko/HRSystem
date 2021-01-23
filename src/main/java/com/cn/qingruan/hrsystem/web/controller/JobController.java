@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cn.qingruan.hrsystem.domain.Job;
@@ -55,13 +56,10 @@ public class JobController {
 		return "jobPage";
 	}
 	
-	@RequestMapping(value = "/getJobById", method = RequestMethod.GET)
-	public String findJobById(@PathVariable("id") int id,HttpSession session) {
-		Job job = jobService.findJobById(id);
-		if(job!=null) {
-			session.setAttribute("job", job);
-		}
-		return "jobPage";
+	@RequestMapping("/findJobById")
+	public @ResponseBody Job findJobById(String id) {
+
+		return jobService.findJobById(id);
 	}
 
 	@RequestMapping(value = "/deleteJob/{id}", method = RequestMethod.GET)

@@ -62,7 +62,7 @@
 <script type="text/javascript">
     //跳转到员工页面
     $(".emp_info").click(function () {
-        $(this).attr("href", "${pageContext.request.contextPath}/employee/findAll");
+        $(this).attr("href", "${pageContext.request.contextPath}/employee/findEmployeeAndPaging");
     });
     //跳转到合同页面
     $(".contract_info").click(function () {

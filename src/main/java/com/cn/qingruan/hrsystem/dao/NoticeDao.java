@@ -24,7 +24,7 @@ public interface NoticeDao {
 	
 	// 根据id查询合同
 	@Select("select * from notice where id=#{id}")
-	public Notice findNoticeById(@Param("id") int id);
+	public Notice findNoticeById(@Param("id") String id);
 	
 	//分页查询
 	@Select("select * from notice limit #{offset},#{limit}")

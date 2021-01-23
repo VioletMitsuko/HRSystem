@@ -47,7 +47,7 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public Notice findNoticeById(int id) {
+	public Notice findNoticeById(String id) {
 		return noticeDao.findNoticeById(id);
 	}
 }

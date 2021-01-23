@@ -3,12 +3,15 @@ package com.cn.qingruan.hrsystem.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Contract implements Serializable{
 	private int id;//表的主键
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
 	private Date contract_date;//合同创建的日期
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
 	private Date start_date;//合同的开始日期
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
 	private Date end_date;//合同的结束日期
 	private String comment;//合同的相关注释描述信息
 	private int emp_id;//对应这份合同主人在emp表中主键

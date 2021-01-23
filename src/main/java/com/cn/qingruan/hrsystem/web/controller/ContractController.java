@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -69,13 +70,9 @@ public class ContractController {
 		return "contractPage";
 	}
 	
-	@RequestMapping(value = "/getContractById", method = RequestMethod.GET)
-	public String findContractById(@PathVariable("id") int id,HttpSession session) {
-		Contract contract = contractService.findContractById(id);
-		if(contract!=null) {
-			session.setAttribute("contract", contract);
-		}
-		return "contractPage";
+	@RequestMapping("/findContractById")
+	public @ResponseBody Contract findContractById(String id) {
+		return contractService.findContractById(id);
 	}
 
 	@RequestMapping(value = "/deleteContract/{id}", method = RequestMethod.GET)
