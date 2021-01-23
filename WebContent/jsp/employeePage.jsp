@@ -151,6 +151,8 @@
                 success:function() {                   
                     alert("删除成功！");
                     window.location.href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo="+curPage;                                      
+                },error:function(){
+                	alert("删除失败！");
                 }
             });
         }

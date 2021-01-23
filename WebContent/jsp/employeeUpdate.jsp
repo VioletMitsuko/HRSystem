@@ -153,6 +153,8 @@
                     //跳转到当前页
                 var curPage = ${pageBean.curPage};
                 window.location.href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo="+curPage;               
+            },error:function(){
+            	alert("员工更改失败");
             }
         });
 
