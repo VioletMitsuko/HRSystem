@@ -52,7 +52,7 @@
     var curPageNo = ${curPageNo};
 
     $(".dept_edit_btn").click(function () {
-        id = $(this).parent().parent().find("td:eq(0)").text();
+        id = $(this).parent().parent().find("td:eq(1)").text();
         $.ajax({
             url:"${pageContext.request.contextPath}/dept/findDeptById?id="+id,
             type:"GET",
