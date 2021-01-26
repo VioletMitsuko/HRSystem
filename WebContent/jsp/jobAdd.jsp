@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label for="add_jobname" class="col-sm-2 control-label">职位名称</label>
                         <div class="col-sm-8">
-                            <input type="text" name="jobname" class="form-control" id="add_jobname" placeholder="人事部">
+                            <input type="text" name="jobname" class="form-control" id="add_jobname" placeholder="初级程序员">
                         </div>
                     </div>
                    <div class="form-group">
@@ -66,7 +66,7 @@
                     $.ajax({
                         url:"${pageContext.request.contextPath}/job/getTotalPages",
                         type:"GET",
-                        success:function () {
+                        success:function (data) {
                            var totalPage = data;
                            window.location.href="${pageContext.request.contextPath}/job/getJobList?pageNo="+totalPage;
                         }

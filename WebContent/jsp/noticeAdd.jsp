@@ -72,7 +72,7 @@
                     $.ajax({
                         url:"${pageContext.request.contextPath}/notice/getTotalPages",
                         type:"GET",
-                        success:function () {
+                        success:function (data) {
                            var totalPage = data;
                            window.location.href="${pageContext.request.contextPath}/notice/getNoticeList?pageNo="+totalPage;
                         }

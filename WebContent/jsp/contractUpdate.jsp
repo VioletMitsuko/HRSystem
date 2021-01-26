@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label for="update_commment" class="col-sm-2 control-label">合同状态</label>
                         <div class="col-sm-8">
-                            <input type="text" name="comment" class="form-control" id="update_comment" >
+                            <input type="text" name="comment" class="form-control" id="update_comment" list="comment_list">
                         </div>
                     </div>
                    <div class="form-group">

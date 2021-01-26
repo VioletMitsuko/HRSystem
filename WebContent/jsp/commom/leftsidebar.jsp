@@ -70,7 +70,7 @@
     });
     //跳转到部门页面
     $(".dept_info").click(function () {
-        $(this).attr("href", "${pageContext.request.contextPath}/dept/findAll");
+        $(this).attr("href", "${pageContext.request.contextPath}/dept/getDeptList");
     });
   //跳转到职位页面
     $(".job_info").click(function () {

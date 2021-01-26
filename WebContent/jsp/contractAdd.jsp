@@ -80,8 +80,8 @@
                     $.ajax({
                         url:"${pageContext.request.contextPath}/contract/getTotalPages",
                         type:"GET",
-                        success:function () {
-                           var totalPage = ${totalPages};
+                        success:function (data) {
+                           var totalPage = data;
                            window.location.href="${pageContext.request.contextPath}/contract/getContractList?pageNo="+totalPage;
                         }
                     }); 

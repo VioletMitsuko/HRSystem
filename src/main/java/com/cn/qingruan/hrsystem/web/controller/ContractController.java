@@ -37,7 +37,12 @@ public class ContractController {
     
 	@RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
 	public @ResponseBody int getTotalPages(HttpSession session) {
-		int totalPages = contractService.countContract();
+		// 每页显示的记录行数
+		int limit = 5;
+		// 总记录数
+		int totalItems = contractService.countContract();
+		int temp = totalItems / limit;
+		int totalPages = (totalItems % limit == 0) ? temp : temp + 1;
 		
 		return totalPages;
 	}

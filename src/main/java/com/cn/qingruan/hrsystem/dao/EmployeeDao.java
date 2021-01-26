@@ -10,9 +10,10 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
 import com.cn.qingruan.hrsystem.domain.Employee;
-
+@Repository("employeeDao")
 public interface EmployeeDao {
 
 	//根据ID查询员工
