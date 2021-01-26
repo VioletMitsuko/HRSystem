@@ -36,13 +36,10 @@ public class ContractController {
     }
     
 	@RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
-	public String getTotalPages(HttpSession session) {
-		int limit = 5;
-		int totalItems = contractService.countContract();
-		int temp = totalItems / limit;
-		int totalPages = (totalItems % limit == 0) ? temp : temp + 1;
-		session.setAttribute("totalPages", totalPages);
-		return "contractPage";
+	public @ResponseBody int getTotalPages(HttpSession session) {
+		int totalPages = contractService.countContract();
+		
+		return totalPages;
 	}
 
 	@RequestMapping(value = "/getContractList", method = RequestMethod.GET)

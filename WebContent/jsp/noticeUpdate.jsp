@@ -46,7 +46,7 @@
 
 <script type="text/javascript">
      $(".notice_edit_btn").click(function () {
-       id = $(this).parent().parent().find("td:eq(0)").text();
+      var id = $(this).parent().parent().find("td:eq(1)").text();
        $.ajax({
            url:"${pageContext.request.contextPath}/notice/findNoticeById?id="+id,
            type:"GET",

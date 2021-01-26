@@ -73,7 +73,7 @@
                         url:"${pageContext.request.contextPath}/notice/getTotalPages",
                         type:"GET",
                         success:function () {
-                           var totalPage = ${totalPages};
+                           var totalPage = data;
                            window.location.href="${pageContext.request.contextPath}/notice/getNoticeList?pageNo="+totalPage;
                         }
                     }); 

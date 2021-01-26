@@ -29,16 +29,17 @@
                 <!-- Table -->
                 <table class="table table-bordered table-hover" id="job_table">
                     <thead>
-                    <th>职位ID</th>
+                    <th>编号</th>
                     <th>职位编号</th>
                     <th>职位名称</th>
                     <th>所属部门</th>
                     <th>操作</th>
                     </thead>
                     <tbody>
-                        <c:forEach items="${jobs}" var="job">
+                        <c:forEach items="${jobs}" var="job" varStatus="j">
                             <tr>
-                            	<td>${job.id}</td>
+                            	<td>${j.count}</td>
+                            	<td hidden="hidden">${job.id}</td>
                                 <td>${job.jobno}</td>
                                 <td>${job.jobname}</td>
                                 <td>${job.dept.deptname}</td>
@@ -134,8 +135,8 @@
 
     $(".job_delete_btn").click(function () {
         var curPage = ${curPageNo};
-        var id = $(this).parent().parent().find("td:eq(0)").text();
-        var delJobName = $(this).parent().parent().find("td:eq(2)").text();
+        var id = $(this).parent().parent().find("td:eq(1)").text();
+        var delJobName = $(this).parent().parent().find("td:eq(3)").text();
         if (confirm("确认删除【" + delJobName+ "】？")){
             $.ajax({
                 url:"${pageContext.request.contextPath}/job/deleteJob/"+id,

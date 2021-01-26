@@ -67,7 +67,7 @@
                         url:"${pageContext.request.contextPath}/job/getTotalPages",
                         type:"GET",
                         success:function () {
-                           var totalPage = ${totalPages};
+                           var totalPage = data;
                            window.location.href="${pageContext.request.contextPath}/job/getJobList?pageNo="+totalPage;
                         }
                     }); 

@@ -36,13 +36,10 @@ public class NoticeController {
     }
     
 	@RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
-	public String getTotalPages(HttpSession session) {
-		int limit = 5;
-		int totalItems = noticeService.countNotice();
-		int temp = totalItems / limit;
-		int totalPages = (totalItems % limit == 0) ? temp : temp + 1;
-		session.setAttribute("totalPages", totalPages);
-		return "noticePage";
+	public @ResponseBody int getTotalPages(HttpSession session) {
+		int totalPages = noticeService.countNotice();
+		
+		return totalPages;
 	}
 
 	@RequestMapping(value = "/getNoticeList", method = RequestMethod.GET)

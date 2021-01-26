@@ -30,7 +30,7 @@
                 <!-- Table -->
                 <table class="table table-bordered table-hover" id="contract_table">
                     <thead>
-                    <th>合同ID</th>
+                    <th>编号</th>
                     <th>签约日期</th>
                     <th>起始日期</th>
                     <th>结束日期</th>
@@ -39,9 +39,10 @@
                     <th>操作</th>
                     </thead>
                     <tbody>
-                        <c:forEach items="${contracts}" var="contract">
+                        <c:forEach items="${contracts}" var="contract" varStatus="c">
                             <tr>
-                            	<td>${contract.id}</td>
+                            	<td>${c.count}</td>
+                            	<td hidden="hidden">${contract.id}</td>
                                 <td><fmt:formatDate value="${contract.contract_date}" dateStyle="medium"/></td>
                                 <td><fmt:formatDate value="${contract.start_date}" dateStyle="medium"/></td>
                                 <td><fmt:formatDate value="${contract.end_date}" dateStyle="medium"/></td>
@@ -139,9 +140,9 @@
 
     $(".contract_delete_btn").click(function () {
         var curPage = ${curPageNo};
-        var id = $(this).parent().parent().find("td:eq(0)").text();
-        var delcontractName = $(this).parent().parent().find("td:eq(2)").text();
-        if (confirm("确认删除【" + delcontractName+ "】？")){
+        var id = $(this).parent().parent().find("td:eq(1)").text();
+        var delcontractName = $(this).parent().parent().find("td:eq(6)").text();
+        if (confirm("确认删除【" + delcontractName+ "的合同】？")){
             $.ajax({
                 url:"${pageContext.request.contextPath}/contract/deleteContract/"+id,
                 type:"Get",

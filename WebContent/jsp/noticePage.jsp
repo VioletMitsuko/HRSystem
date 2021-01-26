@@ -30,7 +30,7 @@
                 <!-- Table -->
                 <table class="table table-bordered table-hover" id="notice_table">
                     <thead>
-                    <th>公告ID</th>
+                    <th>编号</th>
                     <th>公告标题</th>
                     <th>公告内容</th>
                     <th>发布日期</th>
@@ -39,9 +39,10 @@
                     <th>操作</th>
                     </thead>
                     <tbody>
-                        <c:forEach items="${notices}" var="notice">
+                        <c:forEach items="${notices}" var="notice" varStatus="n">
                             <tr>
-                            	<td>${notice.id}</td>
+                            	<td>${n.count}</td>
+                            	<td hidden="hidden">${notice.id}</td>
                                 <td>${notice.title}</td>
                                 <td>${notice.context}</td>
                                 <td><fmt:formatDate value="${notice.create_date}" dateStyle="medium"/></td>
@@ -50,7 +51,7 @@
                                 <td>
                                     <a href="#" role="button" class="btn btn-primary notice_edit_btn" data-toggle="modal" data-target=".notice-update-modal">编辑</a>
                                     <a href="#" role="button" class="btn btn-danger notice_delete_btn">删除</a>
-                                    <a href="#" role="button" class="btn btn-primary notice_show_btn">展示</a>
+                                    <a href="#" role="button" class="btn btn-primary notice_show_btn" >展示</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -139,8 +140,9 @@
     });
 
     $(".notice_delete_btn").click(function () {
-        var id = $(this).parent().parent().find("td:eq(0)").text();
-        var delNoticeName = $(this).parent().parent().find("td:eq(1)").text();
+        var id = $(this).parent().parent().find("td:eq(1)").text();
+        var delNoticeName = $(this).parent().parent().find("td:eq(2)").text();
+        var curPage = ${curPageNo};
         if (confirm("确认删除【" + delNoticeName+ "】？")){
             $.ajax({
                 url:"${pageContext.request.contextPath}/notice/deleteNotice/"+id,
@@ -152,14 +154,13 @@
                 },error:function(){
                 	alert("删除失败！");
                 }
-                        
             });
         }
     });
     
     $(".notice_show_btn").click(function () {
-        var id = $(this).parent().parent().find("td:eq(0)").text();
-        var delNoticeName = $(this).parent().parent().find("td:eq(1)").text();
+        var id = $(this).parent().parent().find("td:eq(1)").text();
+        var delNoticeName = $(this).parent().parent().find("td:eq(2)").text();
         if (confirm("确认展示【" + delNoticeName+ "】？")){
             $.ajax({
                 url:"${pageContext.request.contextPath}/user/showNotice/"+id,
@@ -167,7 +168,7 @@
                 data:{"id":id},
                 success:function (data) {
                 	alert("展示成功！");
-                	window.location.href="${pageContext.request.contextPath}/user/main";
+                 	window.location.href="${pageContext.request.contextPath}/user/main";
                 },error:function(){
                 	alert("展示失败！");
                 }

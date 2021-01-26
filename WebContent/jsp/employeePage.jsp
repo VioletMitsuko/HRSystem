@@ -31,7 +31,7 @@
                     <thead>
                     <th>员工编号</th>
                     <th>员工姓名</th>
-                    <th>职位编号</th>
+                    <th>员工工号</th>
                     <th>性别</th>
                     <th>部门</th>
                     <th>职位</th>

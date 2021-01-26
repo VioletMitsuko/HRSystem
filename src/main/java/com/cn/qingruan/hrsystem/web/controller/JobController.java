@@ -23,13 +23,10 @@ public class JobController {
 	private JobService jobService;
 
 	@RequestMapping(value = "/getTotalPages", method = RequestMethod.GET)
-	public String getTotalPages(HttpSession session) {
-		int limit = 5;
-		int totalItems = jobService.countJob();
-		int temp = totalItems / limit;
-		int totalPages = (totalItems % limit == 0) ? temp : temp + 1;
-		session.setAttribute("totalPages", totalPages);
-		return "jobPage";
+	public @ResponseBody int getTotalPages(HttpSession session) {
+		int totalPages = jobService.countJob();
+		
+		return totalPages;
 	}
 
 	@RequestMapping(value = "/getJobList", method = RequestMethod.GET)

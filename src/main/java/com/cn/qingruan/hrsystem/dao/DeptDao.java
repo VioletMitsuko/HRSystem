@@ -20,6 +20,6 @@ public interface DeptDao {
 	public Dept findDeptById(@Param("id") int id);
 	
 	//查询部门总数
-    @Select({"SELECT COUNT(*) FROM"})
+    @Select({"select count(*) from dept"})
     public int countDepts();
 }

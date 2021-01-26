@@ -47,7 +47,7 @@ public class UserController {
 		return result;		
 	}
     @RequestMapping(value = "/logout")
-    public String logout(){
+    public String logout(HttpSession session){
         return "login";
     }
     
