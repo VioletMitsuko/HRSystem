@@ -47,17 +47,22 @@
                      <div class="form-group">
                         <label for="update_department" class="col-sm-2 control-label">部门</label>
                         <div class="col-sm-8">
-                            <input type="text" name="dept_id" class="form-control" value="" id="update_department">                     
+                           <!--  <input type="text" name="dept_id" class="form-control" value="" id="update_department"> --> 
+                           	<select class="form-control" id="update_department" name="dept_id">
+                           		
+                           	</select>                    
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="update_JobId" class="col-sm-2 control-label">职位</label>
                         <div class="col-sm-8">
-                            <input type="text" name="job_id" class="form-control" value="" id="update_JobId">                     
+                           
+                           	<select class="form-control" id="update_JobId" name="job_id">
+                           		
+                           	</select>                    
                         </div>
-                    </div>
-                    
+                    </div>                                      
                 </form>
             </div>
             <div class="modal-footer">
@@ -92,28 +97,57 @@
                 }else{
                 	$("#update_empGender1").attr('checked',true);
                 }
-                $("#update_department").val(data.dept_id);
-                $("#update_JobId").val(data.job_id);              
+                
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/dept/findDeptById?dept_id="+data.dept_id,
+                    type:"GET",
+                    success:function (result) {            
+                    	var optEle = $("<option></option>").attr("value",result.id).append(result.deptname).attr("selected",true);
+                    	optEle.appendTo("#update_department");
+                    	//2 部门回显列表；
+                        $.ajax({
+                           url:"${pageContext.request.contextPath}/dept/findAll",
+                           type:"GET",
+                           success:function (result) {            
+                                   $.each(result, function () {
+                                   	var deptId=$("#update_department").find("option:selected").val();
+                                   	if(deptId==this.id){
+                                   		//啥也不干
+                                   	}else{
+                                   		var optEle = $("<option></option>").attr("value",this.id).append(this.deptname);
+                                           optEle.appendTo("#update_department"); 
+                                   	}              	                       
+                                   });
+                           }
+                       });
+                    }
+                });
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/job/findJobById?job_id="+data.job_id,
+                    type:"GET",
+                    success:function (result) {            
+                    	var optEle = $("<option></option>").attr("value",result.id).append(result.jobname).attr("selected",true);
+                    	optEle.appendTo("#update_JobId");
+                    	//3 职位列表回显
+                        $.ajax({
+                           url:"${pageContext.request.contextPath}/job/findAll",
+                           type:"GET",
+                           success:function (result) {            
+                                   $.each(result, function () {  
+                                	   var jobId=$("#update_JobId").find("option:selected").val();
+                                	   if(jobId==this.id){
+                                      		//啥也不干
+                                      	}else{ 
+                                      		var optEle = $("<option></option>").attr("value",this.id).append(this.jobname);
+                                            optEle.appendTo("#update_JobId");
+                                      	} 
+                                   });
+                           }
+                       });
+                    }
+                });
             }
-
         });
-	
-        //2 部门回显列表；
-       /*  $.ajax({
-            url:"/hrms/dept/getDeptName",
-            type:"GET",
-            success:function (result) {
-                if (result.code == 100){
-                    $.each(result.extendInfo.departmentList, function () {
-                        var optEle = $("<option></option>").append(this.deptName).attr("value", this.deptId);
-                        optEle.appendTo("#update_department");
-                    });
-                }
-            }
-
-        });
-
-        $(".emp_update_btn").attr("updateEmpId", updateEmpId); */
     });
 
 
@@ -123,8 +157,8 @@
 		var empname = $("#update_empName").val();
 		var jobnum = $("#update_empJobNum").val();
 		var gender = $("input[type='radio']:checked").val();
-		var dept_id = $("#update_department").val();
-		var job_id = $("#update_JobId").val();
+		var dept_id = $("#update_department").find('option:selected').val();
+		var job_id = $("#update_JobId").find('option:selected').val();
 		
 		
         /*   //4 进行修改，对修改的邮箱格式进行判断；
@@ -153,8 +187,6 @@
                     //跳转到当前页
                 var curPage = ${pageBean.curPage};
                 window.location.href="${pageContext.request.contextPath}/employee/findEmployeeAndPaging?pageNo="+curPage;               
-            },error:function(){
-            	alert("员工更改失败");
             }
         });
 

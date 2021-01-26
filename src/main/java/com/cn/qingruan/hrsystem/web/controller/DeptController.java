@@ -21,9 +21,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cn.qingruan.hrsystem.domain.Dept;
-import com.cn.qingruan.hrsystem.domain.Notice;
 import com.cn.qingruan.hrsystem.service.DeptService;
-import com.cn.qingruan.hrsystem.service.NoticeService;
 
 @Controller
 @RequestMapping("/dept")
@@ -68,17 +66,16 @@ public class DeptController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
-	public String findAll(HttpSession session) {
+	@RequestMapping("/findAll")
+	public @ResponseBody List<Dept> findAll() {		
 		List<Dept> depts = deptService.findAll();
-		session.setAttribute("depts", depts);
-		return "deptPage";
+		return depts;
 	}
 	
 	@RequestMapping(value = "/findDeptById", method = RequestMethod.GET)
-	public @ResponseBody Dept findDeptById(String id,HttpSession session) {
+	public @ResponseBody Dept findDeptById(String dept_id,HttpSession session) {
 		
-		return deptService.findDeptById(id);
+		return deptService.findDeptById(dept_id);
 	}
 
 	@RequestMapping(value = "/deleteDept/{id}", method = RequestMethod.GET)

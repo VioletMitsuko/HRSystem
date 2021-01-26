@@ -25,15 +25,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-//	@RequestMapping("/login")
-//	public String login(String username,String password,HttpSession session) {
-//		User user = userService.find(username, password);
-//		List<Notice> notices = userService.findAllNotice();
-//		int id = notices.get(notices.size() - 1).getId();
-//		session.setAttribute("notice",userService.findNoticeById(id));
-//		return "main";
-//	}
-	
 	@RequestMapping("/login")
 	public @ResponseBody User login(User user,Model model,HttpServletRequest request, HttpServletResponse response,HttpSession session){
 		User result = userService.findUserByUsernameAndPassword(user);
@@ -47,6 +38,7 @@ public class UserController {
 	}
     @RequestMapping(value = "/logout")
     public String logout(HttpServletRequest request){
+    	request.getSession().removeAttribute("result");
         return "login";
     }
     

@@ -51,17 +51,16 @@ public class JobController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
-	public String findAll(HttpSession session) {
-		List<Job> jobs = jobService.findAll();
-		session.setAttribute("jobs", jobs);
-		return "jobPage";
+	@RequestMapping("/findAll")
+	public @ResponseBody List<Job> findAll(){
+		
+		return jobService.findAll();
 	}
 	
 	@RequestMapping("/findJobById")
-	public @ResponseBody Job findJobById(String id) {
+	public @ResponseBody Job findJobById(String job_id) {
 
-		return jobService.findJobById(id);
+		return jobService.findJobById(job_id);
 	}
 
 	@RequestMapping(value = "/deleteJob/{id}", method = RequestMethod.GET)
