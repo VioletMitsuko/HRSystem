@@ -33,9 +33,9 @@
                         </div>
                     </div>
                                        <div class="form-group">
-                        <label for="add_comment" class="col-sm-2 control-label">合同状态</label>
+                        <label for="add_comment" class="col-sm-2 control-label">合同备注</label>
                         <div class="col-sm-8">
-                            <input type="text" name="comment" class="form-control" id="add_comment" placeholder="合同状态">
+                            <input type="text" name="comment" class="form-control" id="add_comment" placeholder="合同备注">
                         </div>
                     </div>
                     <div class="form-group">

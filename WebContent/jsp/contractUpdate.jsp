@@ -34,9 +34,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="update_commment" class="col-sm-2 control-label">合同状态</label>
+                        <label for="update_commment" class="col-sm-2 control-label">合同备注</label>
                         <div class="col-sm-8">
-                            <input type="text" name="comment" class="form-control" id="update_comment" list="comment_list">
+                            <input type="text" name="comment" class="form-control" id="update_comment">
                         </div>
                     </div>
                    <div class="form-group">
@@ -70,9 +70,7 @@
                $("#update_comment").val(data.comment);
                $("#update_emp_id").val(data.emp_id);              
            }
-
        });
-	
     }); 
 
     $(".contract_update_btn").click(function () {
